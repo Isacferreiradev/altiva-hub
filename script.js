@@ -6,6 +6,44 @@
 document.addEventListener('DOMContentLoaded', function () {
 
     // ===================================
+    // PERFORMANCE OPTIMIZATIONS
+    // ===================================
+
+    // Disable heavy animations on low-power devices/mobile if needed
+    const isMobile = window.innerWidth < 768;
+
+    // ===================================
+    // NAVBAR SCROLL EFFECT (OPTIMIZED)
+    // ===================================
+    // Uses IntersectionObserver instead of scroll event listener
+
+    const nav = document.querySelector('.nav');
+    const hero = document.querySelector('.hero');
+
+    // Create a sentinel element to track scroll position
+    const sentinel = document.createElement('div');
+    sentinel.style.position = 'absolute';
+    sentinel.style.top = '100px'; // Trigger point
+    sentinel.style.left = '0';
+    sentinel.style.width = '1px';
+    sentinel.style.height = '1px';
+    sentinel.style.pointerEvents = 'none';
+    sentinel.style.visibility = 'hidden';
+    document.body.prepend(sentinel);
+
+    const navObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+    }, { rootMargin: '0px', threshold: 0 });
+
+    navObserver.observe(sentinel);
+
+    // ===================================
     // INTERSECTION OBSERVER FOR SCROLL ANIMATIONS
     // ===================================
 
@@ -19,6 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
+                observer.unobserve(entry.target); // Stop observing once visible
             }
         });
     }, observerOptions);
@@ -30,26 +69,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 
-    // ===================================
-    // NAVBAR SCROLL EFFECT
-    // ===================================
 
-    const nav = document.querySelector('.nav');
-    let lastScroll = 0;
-
-    window.addEventListener('scroll', function () {
-        const currentScroll = window.pageYOffset;
-
-        if (currentScroll > 100) {
-            nav.style.background = 'rgba(5, 5, 5, 0.95)';
-            nav.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.5)';
-        } else {
-            nav.style.background = 'rgba(10, 10, 10, 0.8)';
-            nav.style.boxShadow = 'none';
-        }
-
-        lastScroll = currentScroll;
-    });
 
 
     // ===================================
