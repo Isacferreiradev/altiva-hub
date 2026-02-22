@@ -703,6 +703,113 @@ body::before {
 }
 
 /* ===================================
+   REFERÊNCIAS (PORTFÓLIO) SECTION
+   =================================== */
+.referencias {
+    background: linear-gradient(180deg, var(--color-dark) 0%, var(--color-black) 100%);
+}
+
+.referencias-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-xl);
+}
+
+.ref-card {
+    padding: var(--spacing-xl);
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    transition: all var(--transition-base);
+    backdrop-filter: blur(15px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.ref-card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: var(--shadow-xl), var(--shadow-glow);
+}
+
+.ref-browser-mockup {
+    background: #1a1a1a;
+    border-radius: 12px 12px 0 0;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: var(--spacing-md);
+    box-shadow: var(--shadow-md);
+}
+
+.browser-header {
+    background: #2a2a2a;
+    padding: 8px 12px;
+    display: flex;
+    gap: 6px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.browser-header .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.browser-body {
+    width: 100%;
+    line-height: 0;
+}
+
+.browser-body img {
+    width: 100%;
+    height: auto;
+    display: block;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    transition: transform var(--transition-slow);
+}
+
+.ref-card:hover .browser-body img {
+    transform: scale(1.05);
+}
+
+.ref-content h3 {
+    font-size: 1.75rem;
+    font-weight: var(--font-weight-extrabold);
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-white);
+    letter-spacing: -0.02em;
+}
+
+.ref-content p {
+    color: var(--color-gray-400);
+    line-height: 1.6;
+    margin-bottom: var(--spacing-lg);
+    font-weight: var(--font-weight-medium);
+}
+
+.ref-link {
+    display: inline-block;
+    color: var(--color-white);
+    text-decoration: none;
+    font-weight: var(--font-weight-bold);
+    font-size: 1rem;
+    transition: all var(--transition-fast);
+    padding-bottom: 4px;
+    border-bottom: 2px solid transparent;
+}
+
+.ref-card:hover .ref-link {
+    color: var(--color-gray-200);
+    border-bottom-color: var(--color-white);
+}
+
+/* ===================================
    PLANOS SECTION
    =================================== */
 .plans-grid {
